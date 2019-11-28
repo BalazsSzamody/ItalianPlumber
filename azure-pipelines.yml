@@ -1,0 +1,23 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- fastlane
+
+pool:
+  vmImage: 'macos-latest'
+  
+variables:
+- group: main
+
+steps:
+- task: CmdLine@2
+  displayName: 'SPACEAUTH'
+  inputs:
+    script: 'fastlane spaceauth -u $FASTLANE_USER'
+  env: 
+    FASTLANE_USER: $(apple_id)
+    FASTLANE_PASSWORD: $(app_store_pw)
+    FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: $(app_spec+_pw)
