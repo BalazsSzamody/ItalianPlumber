@@ -1,0 +1,99 @@
+# Xcode
+# Build, test, and archive an Xcode workspace on macOS.
+# Add steps that install certificates, test, sign, and distribute an app, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/xcode
+
+trigger:
+- master
+
+pool:
+  vmImage: 'macos-latest'
+
+variables:
+- group: main
+
+steps:
+- task: InstallAppleCertificate@2
+  inputs:
+    certSecureFile: '$(certificate_dist)'
+    certPwd: '$(certificate_pw)'
+    keychain: 'temp'
+- task: InstallAppleCertificate@2
+  inputs:
+    certSecureFile: '$(certificate_dev)'
+    certPwd: '$(certificate_pw)'
+    keychain: 'temp'
+- task: InstallAppleProvisioningProfile@1
+  inputs:
+    provisioningProfileLocation: 'secureFiles'
+    provProfileSecureFile: '$(profile_appstore)'
+- task: InstallAppleProvisioningProfile@1
+  inputs:
+    provisioningProfileLocation: 'secureFiles'
+    provProfileSecureFile: '$(profile_dev)'
+# - task: Xcode@5
+#   inputs:
+#     actions: 'build'
+#     configuration: 'Release'
+#     sdk: 'iphoneos'
+#     scheme: 'ItalianPlumber'
+#     packageApp: true
+#     exportPath: 'output/'
+#     signingOption: 'default'
+- task: DownloadSecureFile@1
+  name: exportOptions
+  inputs:
+    secureFile: 'exportOptions.plist'
+- task: CmdLine@2
+  displayName: 'Build'
+  inputs:
+    script: |
+      fastlane build
+  env:
+    PROJECT_NAME: $(project)
+    SCHEME: $(scheme)
+    BUMP: $(bump)
+    BUNDLE_ID: $(bundle_id)
+    PROFILE: $(profile_appstore)
+    EXPORT_METHOD: 'app-store'
+    
+    
+#- task: CmdLine@2
+#  displayName: 'Build'
+#  inputs:
+#    script: |
+#      EXPORT_OPTIONS=$(exportOptions.securefilePath)
+#      echo $EXPORT_OPTIONS
+#      PROFILE=ItalianPlumberAppStore
+#      echo $PROFILE
+#      cat $EXPORT_OPTIONS
+#      ./scripts/build.sh $EXPORT_OPTIONS
+#      ls
+# - task: CmdLine@2
+#   displayName: 'Upload'
+#   inputs:
+#     script: |
+#       echo $SESSION
+#       fastlane beta
+#   env:
+#     PROJECT_NAME: $(project)
+#     SCHEME: $(scheme)
+#     BUMP: $(bump)
+#     BUNDLE_ID: $(bundle_id)
+#     FASTLANE_PASSWORD: $(appstore_pw)
+#     FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: $(app_spec_pw)
+#     FASTLANE_SESSION: $(session)
+#     SPACESHIP_2FA_SMS_DEFAULT_PHONE_NUMBER: $(phone)
+- task: AppStoreRelease@1
+  inputs:
+    authType: 'UserAndPass'
+    username: 'bszamody@gmail.com'
+    password: '$(appstore_pw)'
+    isTwoFactorAuth: true
+    appSpecificPassword: '$(app_spec_pw)'
+    fastlaneSession: $(fastlane_session)
+    appIdentifier: '$(bundle_id)'
+    appType: 'iOS'
+    ipaPath: '**/*.ipa'
+    releaseTrack: 'TestFlight'
+    releaseNotes: 'Multiple fixes'

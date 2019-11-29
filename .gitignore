@@ -1,0 +1,6 @@
+
+*.xcarchive
+
+*.xcuserstate
+
+output/

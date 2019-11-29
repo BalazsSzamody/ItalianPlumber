@@ -1,0 +1,143 @@
+# Customise this file, documentation can be found here:
+# https://github.com/fastlane/fastlane/tree/master/fastlane/docs
+# All available actions: https://docs.fastlane.tools/actions
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "2.28.3"
+
+default_platform :ios
+
+platform :ios do
+	
+	
+  before_all do
+    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+		$project_name = ENV['PROJECT_NAME']
+#		$output_dir = ENV['OUTPUT_DIR']
+		$bundle_id = ENV['BUNDLE_ID']
+		$bump_type = ENV['BUMP']
+  end
+
+  desc "Runs all the tests"
+  lane :test do
+    scan
+  end
+  
+  desc "Build APP"
+  lane :build do
+		xcodeproj = "#{$project_name}.xcodeproj"
+		scheme = ENV['SCHEME']
+		profile = ENV['PROFILE']
+		export_method = ENV['EXPORT_METHOD']
+		profile_name = profile.split('.')[0]
+		gym(
+			clean: true,
+#			output_directoy: $output_dir,
+			project: xcodeproj,
+			scheme: scheme,
+			export_method: export_method,
+			export_options: {
+				method: export_method,
+				provisioningProfiles: {
+					'#{bundle_id}': profile_name
+				}
+			}
+			)
+  end
+
+  desc "Submit a new Beta Build to Apple TestFlight"
+  desc "This will also make sure the profile is up to date"
+  lane :beta do
+      export_path = '#{$output_dir}/#{project_name}.ipa'
+      export_method = ENV['EXPORT_METHOD']
+      changelog = 'Fixes'
+      
+      pilot(
+            app_identifier: bundleID,
+#            ipa: export_path,
+            skip_submission: true,
+#            beta_app_review_info: {
+#                contact_email: 'bszamody@gmail.com',
+#                contact_first_name: 'Balazs',
+#                contact_last_name: 'Szamody',
+#                contact_phone: '0478015469'
+#            },
+#            changelog: changelog,
+#            demo_account_required: false,
+#            distribute_external: true,
+#            groups: 'External Testers',
+            )
+      bump
+  end
+  
+  desc "Bump Version"
+  lane :bump do
+    project_name = ENV['PROJECT_NAME']
+    xcodeproj = "#{project_name}.xcodeproj"
+    bump = ENV['BUMP']
+    commit_tag = ENV['COMMIT_TAG']
+
+    if bump != nil
+      version_number = get_version_number(xcodeproj: xcodeproj)
+      if bump == 'version'
+        add_git_tag(grouping: "", tag: version_number)
+        push_git_tags(tag: version_number)
+        increment_version_number(xcodeproj: xcodeproj)
+        build_number = increment_build_number(xcodeproj: xcodeproj, build_number: '1')
+        file_name = 'changelog.md'
+      elsif bump == 'build'
+        build_number = increment_build_number(xcodeproj: xcodeproj)
+        file_name = 'changelog_staging.md'
+      end
+
+      commit_version_bump(
+        message: "[#{commit_tag}] Version increased to #{version_number}(#{build_number})",
+        xcodeproj: xcodeproj,
+        include: [file_name]
+        )
+
+      push_to_git_remote(remote_branch: "develop")
+    end
+  end
+
+  desc "Deploy a new version to the App Store"
+  lane :release do
+    # match(type: "appstore")
+    # snapshot
+    gym(scheme: "ItalianPlumber") # Build your app - more options available
+    deliver(force: true)
+    # frameit
+  end
+
+  # You can define as many lanes as you want
+
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+
+    # slack(
+    #   message: "Successfully deployed new App Update."
+    # )
+  end
+
+  error do |lane, exception|
+    # slack(
+    #   message: exception.message,
+    #   success: false
+    # )
+  end
+end
+
+
+# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
+# All available actions: https://docs.fastlane.tools/actions
+
+# fastlane reports which actions are used
+# No personal data is recorded. Learn more at https://github.com/fastlane/enhancer
