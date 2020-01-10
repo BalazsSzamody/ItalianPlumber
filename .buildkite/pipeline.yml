@@ -1,0 +1,45 @@
+default: &default
+  PROJECT_NAME: 'ItalianPlumber'
+  SCHEME: 'ItalianPlumber'
+  BUNDLE_ID: 'com.bszamody.ItalianPlumber'
+
+steps:
+  - label: 'Run Tests'
+    branches: 'code-climate'
+    command: 
+      - "echo --- :fastlane: running test"
+      - "source ~/.bashrc && fastlane test"
+      - "echo --- :buildkite: generating and uploading coverage results"
+      - "buildkite-agent artifact upload coverage_report/cobertura.xml"
+    env:
+      <<: *default
+    agents:
+      ios: 'build'
+
+  - label: 'Code Climate'
+    branches: 'code-climate'
+    command:
+      - "echo --- :codeclimate: Download Coverage results"
+      - "mkdir -p coverage_report"
+      - "ls"
+      - "buildkite-agent artifact download coverage_report/* coverage_report/"
+      
+      - "echo --- :codeclimate: Download Codeclimate"
+      - "curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter"
+
+      - "echo --- :codeclimate: Configure Permissions"
+      - "chmod +x ./cc-test-reporter"
+
+      - "echo --- :codeclimate: Prebuild"
+      - "./cc-test-reporter before-build"
+
+      - "echo --- :codeclimate: Format Coverage"
+      - "./cc-test-reporter format-coverage -t cobertura -d coverage_report/cobertura.xml"
+
+      - "echo --- :codeclimate: Upload Coverage"
+      - "./cc-test-reporter upload-coverage"
+
+    env:
+      <<: *default
+    agents: 
+      ios: 'build'

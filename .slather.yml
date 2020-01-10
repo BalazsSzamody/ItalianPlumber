@@ -1,0 +1,4 @@
+coverage_service: cobertura_xml
+xcodeproj: ItalianPlumber.xcodeproj
+scheme: ItalianPlumber
+output_directory: coverage_report
