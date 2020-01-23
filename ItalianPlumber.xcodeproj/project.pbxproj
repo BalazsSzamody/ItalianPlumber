@@ -38,6 +38,7 @@
 		1B2DA9CE238DD8690074FB54 /* ItalianPlumberTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ItalianPlumberTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B2DA9D2238DD8690074FB54 /* ItalianPlumberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItalianPlumberTests.swift; sourceTree = "<group>"; };
 		1B2DA9D4238DD8690074FB54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B59C48523D9097E004E1236 /* ItalianPlumber.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ItalianPlumber.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +80,7 @@
 		1B2DA9BA238DD8670074FB54 /* ItalianPlumber */ = {
 			isa = PBXGroup;
 			children = (
+				1B59C48523D9097E004E1236 /* ItalianPlumber.entitlements */,
 				1B2DA9BB238DD8670074FB54 /* AppDelegate.swift */,
 				1B2DA9BD238DD8670074FB54 /* SceneDelegate.swift */,
 				1B2DA9BF238DD8670074FB54 /* ViewController.swift */,
@@ -366,9 +368,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ItalianPlumber/ItalianPlumber.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = VWUE9JZKY9;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ItalianPlumber/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -385,9 +388,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ItalianPlumber/ItalianPlumber.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = VWUE9JZKY9;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ItalianPlumber/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

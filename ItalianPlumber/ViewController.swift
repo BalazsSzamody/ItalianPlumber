@@ -46,6 +46,20 @@ class ViewController: UIViewController {
                 self?.label.text = time
             })
             .disposed(by: &viewModel.disposeBag)
+        
+        guard let url = URL(string: "app.socialbase://") else {
+            print("Shitty URL")
+            return
+        }
+        
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: { isSuccess in
+                print(isSuccess ? "done" : "failed")
+            })
+        } else {
+            print("Can't open \(url)")
+        }
+            
     }
 }
 

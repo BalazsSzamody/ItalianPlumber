@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>method</key>
+	<string>app-store</string>
+	<key>teamID</key>
+	<string>VWUE9JZKY9</string>
+	<key>uploadBitcode</key>
+	<true/>
+	<key>compileBitcode</key>
+	<true/>
+	<key>uploadSymbols</key>
+	<true/>
+	<key>signingStyle</key>
+	<string>automatic</string>
+	<key>provisioningProfiles</key>
+	<dict>
+		<key>com.bszamody.ItalianPlumber</key>
+		<string>fdb553c8-d4ea-4e9f-aff5-44d801940172</string>
+	</dict>
+</dict>
+</plist>
