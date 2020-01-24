@@ -27,10 +27,11 @@ class ImageScrollView: MSAutoView {
         }
     }
     
-    func updateMinZoomScale(for size: CGSize) {
-        guard let imageSize = image?.size else {
-            return
-        }
+    func updateMinZoomScale() {
+        setNeedsLayout()
+        layoutIfNeeded()
+        let size = bounds.size
+        let imageSize = imageView.frame.size
         let widthScale = size.width / imageSize.width
         let heightScale = size.height / imageSize.height
         let minScale = min(widthScale, heightScale)
@@ -42,15 +43,15 @@ class ImageScrollView: MSAutoView {
     override func initView() {
         super.initView()
         scrView.delegate = self
-        updateMinZoomScale(for: self.bounds.size)
+//        updateMinZoomScale(for: self.bounds.size)
         addDoubleTapGesture()
     }
     
     override func updateView() {
         super.updateView()
         imageView.image = image
-        updateMinZoomScale(for: bounds.size)
-        updateConstraints(for: scrView.frame.size)
+        updateMinZoomScale()
+        updateScrollViewConstraints()
     }
     
     private func addDoubleTapGesture() {
@@ -76,11 +77,14 @@ extension ImageScrollView: UIScrollViewDelegate {
     }
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        updateConstraints(for: imageView.frame.size)
+        updateScrollViewConstraints()
     }
     
-    private func updateConstraints(for size: CGSize) {
+    private func updateScrollViewConstraints() {
+        setNeedsLayout()
+        layoutIfNeeded()
         let viewSize = bounds.size
+        let size = imageView.frame.size
         let xOffset = max(0, (viewSize.width - size.width) / 2)
         scrollViewLeading.constant = xOffset
         let yOffset = max(0, (viewSize.height - size.height) / 2)

@@ -14,9 +14,9 @@
             filePath = "../ItalianPlumber/ImageScrollView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "updateMinZoomScale(for:)"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "updateMinZoomScale()"
             landmarkType = "7">
             <Actions>
                <BreakpointActionProxy
@@ -60,25 +60,25 @@
             filePath = "../ItalianPlumber/ImageScrollView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "updateMinZoomScale(for:)"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "updateMinZoomScale()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FE236652-AA8D-404B-92CB-01C74E40CDC0"
+            uuid = "EB1F2C8D-E0FE-4C51-8648-955FE0E1259B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../ItalianPlumber/ImageScrollView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "updateConstraints(for:)"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "updateScrollViewConstraints()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
