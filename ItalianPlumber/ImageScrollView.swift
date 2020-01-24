@@ -19,6 +19,10 @@ class ImageScrollView: MSAutoView {
     @IBOutlet weak var scrollViewTop: NSLayoutConstraint!
     @IBOutlet weak var scrollViewLeading: NSLayoutConstraint!
     
+    @IBOutlet weak var trailing: NSLayoutConstraint!
+    @IBOutlet weak var top: NSLayoutConstraint!
+    @IBOutlet weak var bottom: NSLayoutConstraint!
+    @IBOutlet weak var leading: NSLayoutConstraint!
     weak var delegate: ImageScrollViewDelegate?
     
     var image: UIImage? {
@@ -81,15 +85,13 @@ extension ImageScrollView: UIScrollViewDelegate {
     }
     
     private func updateScrollViewConstraints() {
-        setNeedsLayout()
-        layoutIfNeeded()
-        let viewSize = bounds.size
+        let viewSize = scrView.bounds.size
         let size = imageView.frame.size
         let xOffset = max(0, (viewSize.width - size.width) / 2)
-        scrollViewLeading.constant = xOffset
+        leading.constant = xOffset
+        trailing.constant = xOffset
         let yOffset = max(0, (viewSize.height - size.height) / 2)
-        scrollViewTop.constant = yOffset
-        setNeedsLayout()
-        layoutIfNeeded()
+        top.constant = yOffset
+        bottom.constant = yOffset
     }
 }
