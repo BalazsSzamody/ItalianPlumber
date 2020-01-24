@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,10 @@
 		1B2DA9C5238DD8690074FB54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B2DA9C4238DD8690074FB54 /* Assets.xcassets */; };
 		1B2DA9C8238DD8690074FB54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B2DA9C6238DD8690074FB54 /* LaunchScreen.storyboard */; };
 		1B2DA9D3238DD8690074FB54 /* ItalianPlumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2DA9D2238DD8690074FB54 /* ItalianPlumberTests.swift */; };
+		1B59C49023DA775C004E1236 /* MSAutoView in Frameworks */ = {isa = PBXBuildFile; productRef = 1B59C48F23DA775C004E1236 /* MSAutoView */; };
+		1B59C49223DA77B2004E1236 /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B59C49123DA77B2004E1236 /* ScrollViewController.swift */; };
+		1B59C49423DA782E004E1236 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B59C49323DA782E004E1236 /* ImageScrollView.swift */; };
+		1B59C49623DA7856004E1236 /* ImageScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B59C49523DA7856004E1236 /* ImageScrollView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +43,9 @@
 		1B2DA9D2238DD8690074FB54 /* ItalianPlumberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItalianPlumberTests.swift; sourceTree = "<group>"; };
 		1B2DA9D4238DD8690074FB54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B59C48523D9097E004E1236 /* ItalianPlumber.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ItalianPlumber.entitlements; sourceTree = "<group>"; };
+		1B59C49123DA77B2004E1236 /* ScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
+		1B59C49323DA782E004E1236 /* ImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
+		1B59C49523DA7856004E1236 /* ImageScrollView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageScrollView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B59C49023DA775C004E1236 /* MSAutoView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +96,9 @@
 				1B2DA9C4238DD8690074FB54 /* Assets.xcassets */,
 				1B2DA9C6238DD8690074FB54 /* LaunchScreen.storyboard */,
 				1B2DA9C9238DD8690074FB54 /* Info.plist */,
+				1B59C49123DA77B2004E1236 /* ScrollViewController.swift */,
+				1B59C49323DA782E004E1236 /* ImageScrollView.swift */,
+				1B59C49523DA7856004E1236 /* ImageScrollView.xib */,
 			);
 			path = ItalianPlumber;
 			sourceTree = "<group>";
@@ -118,6 +129,7 @@
 			);
 			name = ItalianPlumber;
 			packageProductDependencies = (
+				1B59C48F23DA775C004E1236 /* MSAutoView */,
 			);
 			productName = ItalianPlumber;
 			productReference = 1B2DA9B8238DD8670074FB54 /* ItalianPlumber.app */;
@@ -170,6 +182,7 @@
 			);
 			mainGroup = 1B2DA9AF238DD8670074FB54;
 			packageReferences = (
+				1B59C48E23DA775C004E1236 /* XCRemoteSwiftPackageReference "MSAutoView" */,
 			);
 			productRefGroup = 1B2DA9B9238DD8670074FB54 /* Products */;
 			projectDirPath = "";
@@ -187,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B2DA9C8238DD8690074FB54 /* LaunchScreen.storyboard in Resources */,
+				1B59C49623DA7856004E1236 /* ImageScrollView.xib in Resources */,
 				1B2DA9C5238DD8690074FB54 /* Assets.xcassets in Resources */,
 				1B2DA9C3238DD8670074FB54 /* Main.storyboard in Resources */,
 			);
@@ -208,7 +222,9 @@
 			files = (
 				1B2DA9C0238DD8670074FB54 /* ViewController.swift in Sources */,
 				1B2DA9BC238DD8670074FB54 /* AppDelegate.swift in Sources */,
+				1B59C49423DA782E004E1236 /* ImageScrollView.swift in Sources */,
 				1B2DA9BE238DD8670074FB54 /* SceneDelegate.swift in Sources */,
+				1B59C49223DA77B2004E1236 /* ScrollViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,7 +387,7 @@
 				CODE_SIGN_ENTITLEMENTS = ItalianPlumber/ItalianPlumber.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = VWUE9JZKY9;
 				INFOPLIST_FILE = ItalianPlumber/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -391,7 +407,7 @@
 				CODE_SIGN_ENTITLEMENTS = ItalianPlumber/ItalianPlumber.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = VWUE9JZKY9;
 				INFOPLIST_FILE = ItalianPlumber/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -479,6 +495,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1B59C48E23DA775C004E1236 /* XCRemoteSwiftPackageReference "MSAutoView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:MaherKSantina/MSAutoView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1B59C48F23DA775C004E1236 /* MSAutoView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B59C48E23DA775C004E1236 /* XCRemoteSwiftPackageReference "MSAutoView" */;
+			productName = MSAutoView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1B2DA9B0238DD8670074FB54 /* Project object */;
 }

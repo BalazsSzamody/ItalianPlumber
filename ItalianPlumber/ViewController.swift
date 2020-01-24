@@ -47,18 +47,19 @@ class ViewController: UIViewController {
             })
             .disposed(by: &viewModel.disposeBag)
         
-        guard let url = URL(string: "app.socialbase://") else {
-            print("Shitty URL")
-            return
-        }
-        
-        if UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url, options: [:], completionHandler: { isSuccess in
-                print(isSuccess ? "done" : "failed")
-            })
-        } else {
-            print("Can't open \(url)")
-        }
+//        guard let url = URL(string: "app.socialbase://") else {
+//            print("Shitty URL")
+//            return
+//        }
+//
+//        if UIApplication.shared.canOpenURL(url) {
+//            UIApplication.shared.open(url, options: [:], completionHandler: { isSuccess in
+//                print(isSuccess ? "done" : "failed")
+//            })
+//        } else {
+//            let url = URL(string: "itms-apps://itunes.apple.com/en/app/socialbase/id1449947387")!
+//            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//        }
             
     }
 }

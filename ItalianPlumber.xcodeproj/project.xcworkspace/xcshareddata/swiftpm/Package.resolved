@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "MSAutoView",
+        "repositoryURL": "git@github.com:MaherKSantina/MSAutoView.git",
+        "state": {
+          "branch": null,
+          "revision": "5d0e1634de569d99a07ce4907b8a08c53bce44f1",
+          "version": "3.1.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
